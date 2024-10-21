@@ -1,0 +1,577 @@
+{
+	"8c22b490d74c4be8840ebf9c8add7012": [
+		{
+			"lastUpdatedBy": "EnR5acqNEWhTk1rr6ZQlptX8Ql62",
+			"folders": [],
+			"previewUrl": "https://upez-demo-2.myshopify.com/?clear_upez_cache",
+			"data": {
+				"jsCode": "var __assign=function(){return(__assign=Object.assign||function(t){for(var e,n=1,o=arguments.length;n<o;n++)for(var i in e=arguments[n])Object.prototype.hasOwnProperty.call(e,i)&&(t[i]=e[i]);return t}).apply(this,arguments)},__awaiter=function(t,e,n,o){return new(n||(n=Promise))((function(i,a){function r(t){try{s(o.next(t))}catch(t){a(t)}}function c(t){try{s(o.throw(t))}catch(t){a(t)}}function s(t){var e;t.done?i(t.value):(e=t.value,e instanceof n?e:new n((function(t){t(e)}))).then(r,c)}s((o=o.apply(t,e||[])).next())}))},__generator=function(t,e){var n,o,i,a,r={label:0,sent:function(){if(1&i[0])throw i[1];return i[1]},trys:[],ops:[]};return a={next:c(0),throw:c(1),return:c(2)},\"function\"==typeof Symbol&&(a[Symbol.iterator]=function(){return this}),a;function c(a){return function(c){return function(a){if(n)throw new TypeError(\"Generator is already executing.\");for(;r;)try{if(n=1,o&&(i=2&a[0]?o.return:a[0]?o.throw||((i=o.return)&&i.call(o),0):o.next)&&!(i=i.call(o,a[1])).done)return i;switch(o=0,i&&(a=[2&a[0],i.value]),a[0]){case 0:case 1:i=a;break;case 4:return r.label++,{value:a[1],done:!1};case 5:r.label++,o=a[1],a=[0];continue;case 7:a=r.ops.pop(),r.trys.pop();continue;default:if(!(i=(i=r.trys).length>0&&i[i.length-1])&&(6===a[0]||2===a[0])){r=0;continue}if(3===a[0]&&(!i||a[1]>i[0]&&a[1]<i[3])){r.label=a[1];break}if(6===a[0]&&r.label<i[1]){r.label=i[1],i=a;break}if(i&&r.label<i[2]){r.label=i[2],r.ops.push(a);break}i[2]&&r.ops.pop(),r.trys.pop();continue}a=e.call(t,r)}catch(t){a=[6,t],o=0}finally{n=i=0}if(5&a[0])throw a[1];return{value:a[0]?a[1]:void 0,done:!0}}([a,c])}}},__spreadArray=function(t,e,n){if(n||2===arguments.length)for(var o,i=0,a=e.length;i<a;i++)!o&&i in e||(o||(o=Array.prototype.slice.call(e,0,i)),o[i]=e[i]);return t.concat(o||Array.prototype.slice.call(e))};function main(){var _a,_b,_c,_d,_e,_f,_g,_h,_j,_k,_l,_m,_o;return __awaiter(this,void 0,void 0,(function(){function deactivateAllUpsellFlows(){Object.keys(state.activeUpsellFlows).forEach((function(t){state.activeUpsellFlows[t]=!1}))}function updateCartWithRatings(event){var _a,_b,_c,fetchedVariants=Object.keys(window.UPEZ__CART_EXPANDED||{}),hasNewItemsToFetch=state.cart.items.some((function(t){return!fetchedVariants.includes(t.id.toString())}));if(null!==(_a=null==event?void 0:event.detail)&&void 0!==_a&&_a.skipExtendingCart)document.dispatchEvent(new CustomEvent(\"UPEZ_CART_EXPANDED_AFTER_REFETCHED\",{detail:{cart:(null===(_b=null==event?void 0:event.detail)||void 0===_b?void 0:_b.cart)||state.cart,skipExtending:!0}}));else{if(hasNewItemsToFetch)return fetch(\"/apps/upez/cart-expanded?exclude=\".concat(Object.keys(window.UPEZ__CART_EXPANDED||{}).join(\",\"))).then((function(t){return t.text()})).then(eval).then((function(){var t;state.cart=mergeCartWithRatings((null===(t=null==event?void 0:event.detail)||void 0===t?void 0:t.cart)||state.cart),document.dispatchEvent(new CustomEvent(\"UPEZ_CART_EXPANDED_AFTER_REFETCHED\",{detail:{cart:state.cart,skipExtending:!1}}))})).catch((function(t){var e;document.dispatchEvent(new CustomEvent(\"UPEZ_CART_EXPANDED_AFTER_REFETCHED\",{detail:{cart:(null===(e=null==event?void 0:event.detail)||void 0===e?void 0:e.cart)||state.cart,skipExtending:!1}})),console.error(\"Fail to load /upez/cart-expanded\")}));document.dispatchEvent(new CustomEvent(\"UPEZ_CART_EXPANDED_AFTER_REFETCHED\",{detail:{cart:(null===(_c=null==event?void 0:event.detail)||void 0===_c?void 0:_c.cart)||state.cart,skipExtending:!0}}))}}function mergeCartWithRatings(t){var e=t.items.filter((function(t){return t.quantity>0})).map((function(t){var e,n,o;return __assign(__assign(__assign({},t),(null===(e=window.UPEZ__CART_EXPANDED)||void 0===e?void 0:e[t.variant_id])||{}),{original_line_price:Math.max(((null===(o=null===(n=window.UPEZ__CART_EXPANDED)||void 0===n?void 0:n[t.variant_id])||void 0===o?void 0:o.compare_at_price)||0)*t.quantity,t.original_line_price)||void 0})}));return e.forEach((function(t){var n;if(\"OPTIONS_HIDDEN_PRODUCT\"!==t.product_type&&(null===(n=t.properties)||void 0===n?void 0:n._boldBuilderId)&&!t.merged){var o=e.find((function(e){var n,o;return\"OPTIONS_HIDDEN_PRODUCT\"===e.product_type&&(null===(n=e.properties)||void 0===n?void 0:n._boldBuilderId)===(null===(o=t.properties)||void 0===o?void 0:o._boldBuilderId)}));o&&(t.line_price+=o.line_price,t.merged=!0)}})),__assign(__assign({},t),{items:e,cart_payment_html:window.UPEZ__CART_PAYMENT_HTML||\"\"})}function getCookie(t){for(var e=0,n=document.cookie.split(\";\");e<n.length;e++){var o=n[e].trim().split(\"=\"),i=o[0],a=o[1];if(i===t)return decodeURIComponent(a)}return null}function updateCheckout(t){var e,n,o=this;(null===(e=state.checkoutDataFromSession)||void 0===e?void 0:e.applied_discount)&&state.checkoutTokenID&&state.checkoutToken?fetch(\"/wallets/checkouts/\".concat(state.checkoutTokenID),{headers:{authorization:\"Basic \".concat(btoa(state.checkoutToken)),\"content-type\":\"application/json\"},body:JSON.stringify({checkout:{country:window.Shopify.country,discount_code:null===(n=state.checkoutDataFromSession.applied_discount)||void 0===n?void 0:n.title,line_items:t.items.map((function(t){var e,n;return __assign(__assign({},t),{selling_plan_id:null===(n=null===(e=t.selling_plan_allocation)||void 0===e?void 0:e.selling_plan)||void 0===n?void 0:n.id})})),presentment_currency:window.Shopify.currency.active}}),method:\"PUT\"}).then((function(t){return __awaiter(o,void 0,void 0,(function(){var e,n,o;return __generator(this,(function(i){switch(i.label){case 0:return console.debug({res:t}),t.ok?[4,t.json()]:[3,2];case 1:return e=i.sent(),n=e.checkout.applied_discounts.find((function(t){return\"discount_code\"===t.application_type})),sessionStorage.setItem(\"UPEZ_CHECKOUT_DATA\",JSON.stringify({applied_discount:n})),state.checkoutDataFromSession=e.checkout,state.checkoutTokenID=e.checkout.token,console.debug(state.checkoutDataFromSession),(null==n?void 0:n.title)&&(o=\"discount_code=\".concat(null==n?void 0:n.title,\"; path=/;\"),console.debug({cookie:o}),document.cookie=o),state.errorMessage=\"\",[3,3];case 2:409===t.status&&discountCodeInCookie_1?state.enterCode(discountCodeInCookie_1):(sessionStorage.removeItem(\"UPEZ_CHECKOUT_DATA\"),state.checkoutDataFromSession=null),i.label=3;case 3:return[2]}}))}))})):state.checkoutDataFromSession=null}function isCartItemFitPosition(t,e){return window.isFlowActive({conditions:{AND:{cart_items:{contain_some:e}}},suggested_variants:[],suggested_products:[],suggested_collections:[]},{items:[t]})}function renderShopifyImage(t,e){var n=t.split(\".\"),o=n.pop();return/_\\d+(x\\d+)?$/.test(n[n.length-1])?(n[n.length-1]=n.slice(-1)[0].replace(/_\\d+(x\\d+)?$/,\"\"),n.join(\".\")+\"_\"+e+\".\"+o):t}function updateCartItemBubble(){var t,e=null===(t=state.getSettingValue(\"cart_item_count_selector\"))||void 0===t?void 0:t.trim();e&&document.querySelectorAll(e).forEach((function(t){state.cart&&(t.innerHTML=state.cart.item_count.toString())}))}var cartUrl_1,cartButtonSelectors,cartButtons,originalFetch2,discountCodeInCookie_1,noteUpdateTimeout_1,t,priceSelector,currentPriceElement,currentHTML,_this=this;return __generator(this,(function(e){if(Builder.isServer&&(state.message=\"default\",state.discounts=[]),Builder.isBrowser){if(console.debug(\"[UPEZ] Solid Official v\".concat(null===(_b=null===(_a=context.builderContent)||void 0===_a?void 0:_a.data)||void 0===_b?void 0:_b.version)),state.cart=mergeCartWithRatings(state.cart),cartUrl_1=\"/cart.json\",state.cartItemWidgetMap={},state.isCartOpen=!!window.UPEZ_PREVIEW,state.activeUpsellFlows={},state.settings=window.upez__cart_settings,state.getDefault=function(t,e){var n,o;return(null===(o=((null===(n=context.builderContent)||void 0===n?void 0:n.data.settings)||window.UPEZ_BUILDER_DATA[document.querySelector(\"#upezCart\").attributes.entry.value][0].data.settings||[]).find((function(e){return e.id===t})))||void 0===o?void 0:o.default)||e},state.getSettingValue=function(t,e){var n;return void 0===(null===(n=state.settings)||void 0===n?void 0:n[t])?state.getDefault(t,e):state.settings[t]},state.getCrossSellFlows=function(){return window.upezFlows.filter((function(t){return\"CROSS_SELL\"==t.type}))},state.strings=(null===(_c=window.theme)||void 0===_c?void 0:_c.strings)||{},state.closeCart=function(){var t;document.body.style.overflow=\"\",state.isCartOpen=!1,document.querySelector(\"html\").style.overflow=\"initial\",document.querySelector(\"html\").style.touchAction=\"auto\",document.dispatchEvent(new CustomEvent(\"UPEZ_CART_CLOSED\")),null===(t=document.querySelector(\".drawer--overlay,#page-overlay,.overlay,.PageOverlay,.t4s-close-overlay,#modals-rightDrawer,.overlay-close,.site-overlay,.click-capture,.drawer__underlay\"))||void 0===t||t.click()},state.openCart=function(){document.body.style.overflow=\"hidden\",state.isCartOpen=!0,document.querySelector(\"html\").style.overflow=\"\",document.querySelector(\"html\").style.touchAction=\"\",document.dispatchEvent(new CustomEvent(\"UPEZ_CART_OPENED\"))},window.openUPEZCart=state.openCart,(null===(_d=state.settings)||void 0===_d?void 0:_d.disableCartSelectors)&&__spreadArray([],document.querySelectorAll(null===(_e=state.settings)||void 0===_e?void 0:_e.disableCartSelectors),!0).forEach((function(t){t.classList.add(\"upez-hide\")})),null===(_f=document.querySelector(\"#CartDrawer\"))||void 0===_f||_f.remove(),state.renderShopifyImage=renderShopifyImage,state.currency=window.Shopify.currency.active,state.currencyRate=parseFloat(window.Shopify.currency.rate),state.formatMoney=function(t){return window.upez__formatMoney(t)},document.addEventListener(\"UPEZ_CART_REFETCHED\",updateCartWithRatings),document.addEventListener(\"UPEZ__CART_REFETCHED_AFTER_ADD\",updateCartWithRatings),updateCartWithRatings(),updateCartItemBubble(),cartButtonSelectors=['a[href$=\"/cart\"]'],(null===(_g=state.settings)||void 0===_g?void 0:_g.cart_button_selector)&&cartButtonSelectors.push(null===(_h=state.settings)||void 0===_h?void 0:_h.cart_button_selector),(cartButtons=__spreadArray([],document.querySelectorAll(cartButtonSelectors.join(\",\")),!0)).forEach((function(t){var e,n=t.cloneNode(!0);null===(e=t.parentElement)||void 0===e||e.insertAdjacentElement(\"beforeEnd\",n),t.remove(),n.addEventListener(\"click\",(function(t){t.preventDefault(),state.openCart()}))})),originalFetch2=window.fetch,window.fetch=function(){for(var t=this,e=arguments[0],n=arguments[1];e&&\"string\"!=typeof e;)e=e.url;return!e||!e.includes(\"/cart.json?app=upez\")||n&&\"GET\"!==(null==n?void 0:n.method)?e&&(e.includes(\"/cart/change\")||e.includes(\"/cart/update\"))?(state.loading=!0,originalFetch2.apply(window,arguments).then((function(o){return __awaiter(t,void 0,void 0,(function(){var t,i;return __generator(this,(function(a){switch(a.label){case 0:return state.loading=!1,o.ok?[4,o.clone().json()]:[3,2];case 1:t=a.sent(),deactivateAllUpsellFlows(),e.includes(\"activity=replacing\")?window.upez__replacingTimeout=setTimeout((function(){state.cart=mergeCartWithRatings(t)}),1500):(i=mergeCartWithRatings(t),e.includes(\"/cart/update\")&&window.UPEZ.deepCompare(state.cart,i)?console.debug(\"[UPEZ] /update is done but return the same result.\"):state.cart=i),document.dispatchEvent(new CustomEvent(\"UPEZ_CART_REFETCHED\",{detail:{cart:state.cart,skipExtendingCart:!0}})),(e.includes(\"/cart/change\")||n.body)&&document.dispatchEvent(new CustomEvent(\"UPEZ__CART_REFETCHED_AFTER_CHANGE\",{detail:{cart:state.cart}})),updateCartItemBubble(),a.label=2;case 2:return[2,o]}}))}))})).catch((function(t){state.loading=!1}))):e&&e.includes(\"/cart/add\")?(state.loading=!0,originalFetch2.apply(window,arguments).then((function(n){return __awaiter(t,void 0,void 0,(function(){var t,o,i,a,r,c;return __generator(this,(function(s){switch(s.label){case 0:return state.loading=!1,n.ok?(window.upez__replacingTimeout&&clearTimeout(window.upez__replacingTimeout),deactivateAllUpsellFlows(),[4,n.clone().json()]):[3,5];case 1:return t=s.sent(),o=window.enrichCartItem(t.items?t.items[0]:t),i=!0,e.includes(\"hide_upez_cart=true\")&&(i=!1),o&&document.dispatchEvent(new CustomEvent(\"UPEZ__ADDED_ITEM\",{detail:{addedItem:o}})),i&&(state.openCart(),console.log(\"[UPEZ] Open cart after add\")),[4,fetch(\"\".concat(cartUrl_1,\"?app=upez\"))];case 2:return a=s.sent(),[4,new Promise((function(t){return setTimeout(t,10)}))];case 3:return s.sent(),document.dispatchEvent(new CustomEvent(\"UPEZ__CART_REFETCHED_AFTER_ADD\",{detail:{addedItem:o}})),c=mergeCartWithRatings,[4,a.json()];case 4:r=c.apply(void 0,[s.sent()]),document.dispatchEvent(new CustomEvent(\"UPEZ__CART_REFETCHED_AFTER_CHANGE\",{detail:{cart:r}})),updateCartItemBubble(),s.label=5;case 5:return[2,n]}}))}))})).catch((function(t){state.loading=!1}))):originalFetch2.apply(window,arguments):(state.loading=!0,originalFetch2.apply(window,arguments).then((function(e){return __awaiter(t,void 0,void 0,(function(){var t;return __generator(this,(function(n){switch(n.label){case 0:return state.loading=!1,e.ok?[4,e.clone().json()]:[3,2];case 1:t=n.sent(),state.cart=mergeCartWithRatings(t),updateCartItemBubble(),document.dispatchEvent(new CustomEvent(\"UPEZ_CART_REFETCHED\",{detail:{cart:state.cart}})),n.label=2;case 2:return[2,e]}}))}))})).catch((function(t){state.loading=!1})))},console.debug(\"Reloading cart\"),fetch(\"\".concat(cartUrl_1,\"?app=upez\")),document.addEventListener(\"UPEZ_CART_REFETCHED\",updateCartWithRatings),updateCartWithRatings(),updateCartItemBubble(),state.checkoutToken=null===(_j=document.querySelector(\"[name=shopify-checkout-api-token][content]\"))||void 0===_j?void 0:_j.getAttribute(\"content\"),state.doesCartHaveDiscount=function(){return state.cart.items.some((function(t){return t.discounts.length>0}))},state.getCartDiscountCodes=function(){var t,e=(null===(t=state.cart.cart_level_discount_applications)||void 0===t?void 0:t.filter((function(t){var e;return\"discount_code\"===((null===(e=t.discount_application)||void 0===e?void 0:e.type)||t.type)})).map((function(t){return t.discount_application||t})).reduce((function(t,e){return t.some((function(t){return t.title===e.title}))||t.push(e),t}),[]))||[],n=state.cart.items.reduce((function(t,e){var n,o=(null===(n=e.line_level_discount_allocations)||void 0===n?void 0:n.filter((function(t){var e;return\"discount_code\"===(null===(e=t.discount_application)||void 0===e?void 0:e.type)})).map((function(t){return t.discount_application})))||[];return __spreadArray(__spreadArray([],t,!0),o,!0)}),[]);return __spreadArray(__spreadArray([],e,!0),n,!0).reduce((function(t,e){return t.some((function(t){var n=t.title;return e.title===n}))?t:__spreadArray(__spreadArray([],t,!0),[e],!1)}),[])},state.doesCartHaveDiscountCode=function(){var t;return state.getCartDiscountCodes().length>0||(null===(t=state.checkoutDataFromSession)||void 0===t?void 0:t.applied_discount)},state.getFinalPrice=function(){var t;return parseFloat((null===(t=state.checkoutDataFromSession)||void 0===t?void 0:t.total_price)||\"0\")||state.cart.total_price/100},state.getOriginalPriceWithCompareAtPrice=function(){return state.cart.items.reduce((function(t,e){var n;return t+((null===(n=e.selling_plan_allocation)||void 0===n?void 0:n.compare_at_price)||e.original_line_price)}),0)},state.removeDiscount=function(){return __awaiter(_this,void 0,void 0,(function(){return __generator(this,(function(t){switch(t.label){case 0:return[4,fetch(\"/discount/CLEAR_ALL_DISCOUNTS\",{headers:{accept:\"text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9\",\"accept-language\":\"en-US,en;q=0.9\",\"cache-control\":\"no-cache\",\"content-type\":\"application/x-www-form-urlencoded\"},referrerPolicy:\"strict-origin-when-cross-origin\",body:null,method:\"GET\",mode:\"cors\",credentials:\"include\"})];case 1:return t.sent(),state.checkoutDataFromSession=null,document.cookie=\"discount_code=; expires=Thu, 18 Dec 2013 12:00:00 UTC; path=/\",sessionStorage.removeItem(\"UPEZ_CHECKOUT_DATA\"),sessionStorage.removeItem(\"UPEZ_CHECKOUT_TOKEN_ID\"),[4,fetch(\"/cart.json?app=upez\")];case 2:return t.sent(),[2]}}))}))},state.enterCode=function(t){return __awaiter(_this,void 0,void 0,(function(){var e=this;return __generator(this,(function(n){switch(n.label){case 0:return console.debug(\"Processing code: \".concat(t)),[4,fetch(\"/discount/\".concat(t),{headers:{accept:\"text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9\",\"accept-language\":\"en-US,en;q=0.9\",\"cache-control\":\"no-cache\",\"content-type\":\"application/x-www-form-urlencoded\"},referrerPolicy:\"strict-origin-when-cross-origin\",body:null,method:\"GET\",mode:\"cors\",credentials:\"include\"})];case 1:return n.sent(),[4,fetch(\"/cart.json?app=upez\").then((function(t){return t.json()}))];case 2:return n.sent().cart_level_discount_applications.find((function(e){var n,o;return\"discount_code\"===(null===(n=e.discount_application)||void 0===n?void 0:n.type)&&(null===(o=e.discount_application)||void 0===o?void 0:o.title)===t}))?[2]:state.checkoutToken?(fetch(\"/wallets/checkouts\",{headers:{authorization:\"Basic \".concat(btoa(state.checkoutToken)),\"content-type\":\"application/json\"},body:JSON.stringify({checkout:{country:window.Shopify.country,discount_code:t,line_items:state.cart.items.map((function(t){var e,n;return __assign(__assign({},t),{selling_plan_id:null===(n=null===(e=t.selling_plan_allocation)||void 0===e?void 0:e.selling_plan)||void 0===n?void 0:n.id})})),presentment_currency:window.Shopify.currency.active}}),method:\"POST\"}).then((function(n){return __awaiter(e,void 0,void 0,(function(){var e,o,i,a,r,c,s,u,l,d,_;return __generator(this,(function(p){switch(p.label){case 0:return n.ok?[4,n.json()]:[3,2];case 1:return e=p.sent(),o=t,i=new Date(Date.now()+864e5).toUTCString(),a=\"discount_code=\".concat(o,\"; expires=\").concat(i,\"; path=/;\"),document.cookie=a,e.checkout.applied_discount.non_applicable_reason?state.errorMessage=e.checkout.applied_discount.non_applicable_reason:(sessionStorage.setItem(\"UPEZ_CHECKOUT_TOKEN_ID\",e.checkout.token),r=e.checkout.applied_discounts.find((function(t){return\"discount_code\"===t.application_type})),sessionStorage.setItem(\"UPEZ_CHECKOUT_DATA\",JSON.stringify({applied_discount:r})),state.checkoutDataFromSession=e.checkout,state.errorMessage=\"\"),[3,4];case 2:return[4,n.json()];case 3:c=p.sent().errors,console.debug({errors:c}),state.errorMessage=(null===(u=null===(s=null==c?void 0:c.discount_code)||void 0===s?void 0:s[0])||void 0===u?void 0:u.message)||(null===(_=null===(d=null===(l=null==c?void 0:c.applied_discount)||void 0===l?void 0:l.code)||void 0===d?void 0:d[0])||void 0===_?void 0:_.message),document.cookie=\"discount_code=\".concat(discountCodeInCookie_1,\"; expires=Thu, 18 Dec 2013 12:00:00 UTC; path=/\"),sessionStorage.removeItem(\"UPEZ_CHECKOUT_DATA\"),sessionStorage.removeItem(\"UPEZ_CHECKOUT_TOKEN_ID\"),p.label=4;case 4:return[2]}}))}))})),[2]):[2]}}))}))},discountCodeInCookie_1=getCookie(\"discount_code\"),console.debug({discountCodeInCookie:discountCodeInCookie_1}),discountCodeInCookie_1&&state.enterCode(discountCodeInCookie_1),sessionStorage.UPEZ_CHECKOUT_DATA)try{state.checkoutDataFromSession=JSON.parse(sessionStorage.UPEZ_CHECKOUT_DATA),state.checkoutTokenID=sessionStorage.UPEZ_CHECKOUT_TOKEN_ID,state.checkoutDataFromSession&&(null===(_k=state.checkoutDataFromSession.applied_discount)||void 0===_k?void 0:_k.title)&&(document.cookie=\"discount_code=\".concat(null===(_l=state.checkoutDataFromSession.applied_discount)||void 0===_l?void 0:_l.title,\"; path=/;\"))}catch(t){console.debug(\"UPEZ_CHECKOUT_DATA in session is invalid\")}document.addEventListener(\"UPEZ_CART_REFETCHED\",(function(t){var e;if(null===(e=null==t?void 0:t.detail)||void 0===e?void 0:e.cart){if(t.detail.cart.cart_level_discount_applications.find((function(t){var e;return\"discount_code\"===(null===(e=t.discount_application)||void 0===e?void 0:e.type)})))return;updateCheckout(t.detail.cart)}})),updateCheckout(state.cart),document.addEventListener(\"UPEZ_CART_EXPANDED_AFTER_REFETCHED\",(function(t){var e,n=null===(e=t.detail)||void 0===e?void 0:e.cart;if(n){var o=window.upezFlows.reduce((function(t,e){if(\"IN_CART_ITEM_UPSELL\"!==e.type)return t;var o=n.items.find((function(t){return isCartItemFitPosition(t,e.position)}));return o&&!t[e.handle]&&window.isFlowActive(e,n)?(t[e.handle]=o.key,t):t}),{});state.cartItemWidgetMap=Object.entries(o).reduce((function(t,e){var n,o=e[0],i=e[1];return __assign(__assign({},t),((n={})[i]=window.upezFlows.find((function(t){return t.handle===o})),n))}),{})}})),state.note=state.cart.note,state.saving=!1,state.saved=!1,state.onNoteChange=function(t){noteUpdateTimeout_1&&clearTimeout(noteUpdateTimeout_1),noteUpdateTimeout_1=setTimeout((function(){state.note=t.target.value,state.onNoteFormSubmit()}),500)},state.onNoteFormSubmit=function(){state.saving=!0,fetch(\"\".concat(window.Shopify.routes.root||\"/\",\"cart/update.js?app=upez\"),{headers:{\"content-type\":\"application/json\",accept:\"application/json\"},method:\"POST\",body:JSON.stringify({note:state.note})}).then((function(t){state.saving=!1,state.saved=!0})).catch((function(t){state.saving=!1,state.saved=!1,console.error(t)}))},state.ready=!0,null===(_m=document.querySelector(\"#upez_loading_indicator\"))||void 0===_m||_m.classList.add(\"upez-loaded\"),window.UPEZ_OPEN_CART_WHEN_LOAD&&state.openCart(),t=\"\\n\\n\",t+=\"✅ Boost average order value\\n\",t+=\"✅ Instant loading speed\\n\",t+=\"✅ Premium experience, made affordable for rising brands\\n\",t+=\"\\n\\n\",t+=\"Learn more at: https://upnova.io/\\n\\n\",console.group(\"%cCart, bundle & upsells powered by upnova\",\"background-color: #c5eea8; color: black; padding: 10px;\"),console.log(\"%c\".concat(t),\"font-size: 14px;\"),console.groupEnd(),fetch(\"\".concat(window.Shopify.routes.root||\"/\",\"cart/change\"),{body:'{\"line\":0,\"quantity\":0}',method:\"POST\"}),(priceSelector=null===(_o=state.getSettingValue(\"pdp_price_container_selector\"))||void 0===_o?void 0:_o.trim())&&((currentPriceElement=document.querySelector(priceSelector))?(currentHTML=currentPriceElement.innerHTML,currentPriceElement.outerHTML='\\n          <builder-component\\n            api-key=\"3628f640692a4d2fa236d814bb277285\"\\n            id=\"upez--product-prices\"\\n            entry=\"0a185abc20804bf08d8b66e7fe92cdc5\"\\n            name=\"product-price\"\\n          >\\n            '.concat(currentHTML,\"\\n          </builder-component>\\n        \")):console.debug(\"[UPEZ] Can't find currentPriceElement\"))}return[2]}))}))}var _virtual_index=main();return _virtual_index",
+				"settings": [
+					{
+						"type": "header",
+						"content": "Cart settings"
+					},
+					{
+						"default": "450px",
+						"options": [
+							{
+								"label": "Small",
+								"value": "450px"
+							},
+							{
+								"label": "Medium",
+								"value": "530px"
+							},
+							{
+								"label": "Big",
+								"value": "800px"
+							}
+						],
+						"id": "cart_width",
+						"label": "Cart Width",
+						"type": "select"
+					},
+					{
+						"default": "upez-btn--checkout",
+						"id": "checkout_btn_class",
+						"placeholder": "e.g: btn btn--black-outline",
+						"label": "Checkout button class names",
+						"type": "button",
+						"info": "Enter the pre-defined css classes to apply your own style."
+					},
+					{
+						"thumbnail": "https://cdn.builder.io/api/v1/image/assets%2F3628f640692a4d2fa236d814bb277285%2F7db22cbcfd3e45c3bb63de3d07298475",
+						"default": true,
+						"label": "Show ratings",
+						"id": "show_ratings",
+						"type": "boolean",
+						"info": "Show ratings in cart item"
+					},
+					{
+						"thumbnail": "https://cdn.builder.io/api/v1/image/assets%2F3628f640692a4d2fa236d814bb277285%2Fe91ce81a14114157aad2fe0b097ee74a",
+						"default": true,
+						"label": "Enable quick payments",
+						"id": "enable_dynamic_checkout",
+						"type": "boolean",
+						"info": "Allow customers to checkout using Apple Pay, Shop Pay or PayPal. This will reduce the customers' checkout time and increase your conversion"
+					},
+					{
+						"thumbnail": "https://cdn.builder.io/api/v1/image/assets%2F3628f640692a4d2fa236d814bb277285%2Feeaf90dd3bf6451e831e1cfcaba364e6",
+						"default": false,
+						"id": "enable_note",
+						"label": "Enable order note",
+						"type": "boolean",
+						"info": "Allow customers to enter a note in the cart"
+					},
+					{
+						"show_when": "settings.enable_note == true",
+						"default": "🎁 Add free gift message",
+						"placeholder": "Order Note",
+						"id": "__label_order_note",
+						"label": "Order Note",
+						"type": "text",
+						"info": ""
+					},
+					{
+						"thumbnail": "https://cdn.builder.io/api/v1/image/assets%2F3628f640692a4d2fa236d814bb277285%2F988b48d99f7b4f138f0f95d0eb0535c1",
+						"default": true,
+						"label": "Enable discount code input",
+						"id": "enable_discount_form",
+						"type": "boolean",
+						"info": "Allow customers to enter a discount code in the cart"
+					},
+					{
+						"default": "Add discount",
+						"show_when": "settings.enable_discount_form == true",
+						"id": "__label_add_discount_label",
+						"placeholder": "Add discount",
+						"label": "Add discount label",
+						"type": "text",
+						"info": ""
+					},
+					{
+						"default": "Apply",
+						"show_when": "settings.enable_discount_form == true",
+						"label": "Apply discount label",
+						"id": "__label_apply_discount",
+						"type": "text"
+					},
+					{
+						"show_when": "settings.enable_discount_form == true",
+						"default": "button btn btn--medium btn--secondary",
+						"label": "Apply discount button class names",
+						"id": "apply_discount_btn",
+						"type": "button"
+					},
+					{
+						"default": false,
+						"thumbnail": "https://cdn.builder.io/api/v1/image/assets%2F3628f640692a4d2fa236d814bb277285%2F43b6f7783d1d4c8799b74c2abce4c1d2",
+						"label": "Show shopping disclaimer",
+						"id": "enable_disclaimer",
+						"type": "boolean"
+					},
+					{
+						"type": "header",
+						"content": "Colors"
+					},
+					{
+						"default": "rgba(7, 7, 7, 0.44)",
+						"id": "backdrop_color",
+						"label": "Backdrop color",
+						"type": "color"
+					},
+					{
+						"default": "#faf8f4",
+						"id": "reward_section_background_color",
+						"label": "Reward Section Background Color",
+						"type": "color"
+					},
+					{
+						"label": "Cart Inner Background",
+						"id": "cart_inner_background",
+						"type": "color"
+					},
+					{
+						"default": "black",
+						"label": "Cart Text Color",
+						"id": "cart_text_color",
+						"type": "color"
+					},
+					{
+						"default": "#faf8f4",
+						"label": "Cart upsell background color",
+						"id": "upsell_container_bg_color",
+						"type": "color"
+					},
+					{
+						"default": "green",
+						"id": "primary_color",
+						"label": "Primary Color",
+						"type": "color",
+						"info": "This color will be used for active goals or purchase goal progress"
+					},
+					{
+						"default": "red",
+						"id": "discount_color",
+						"label": "Discount Color",
+						"type": "color",
+						"info": "This color will be used for discounted price labels"
+					},
+					{
+						"default": "black",
+						"id": "star_review_color",
+						"label": "Star Review Color",
+						"type": "color"
+					},
+					{
+						"type": "header",
+						"subheadline": "Display a sliding announcement at the top of the cart. This is useful when you want to show a special announcement or promotion.",
+						"content": "Announcement (Marquee)"
+					},
+					{
+						"default": [],
+						"blocks": [
+							{
+								"default": "Special announcement",
+								"id": "headline",
+								"label": "Headline",
+								"type": "richtext"
+							}
+						],
+						"label": "Headlines",
+						"id": "headlines",
+						"type": "blocks",
+						"info": "Add a headline (or multiple) to the top of the cart"
+					},
+					{
+						"default": "white",
+						"id": "marquee_bg_color",
+						"label": "Marquee Background Color",
+						"type": "color"
+					},
+					{
+						"type": "header",
+						"content": "Reward settings"
+					},
+					{
+						"default": true,
+						"id": "rewards_float_on_top",
+						"label": "Always float the reward section on top of the cart",
+						"type": "boolean"
+					},
+					{
+						"default": "a8e7884de2f24d619f9bfe928bbf2b85",
+						"label": "Rewards Template",
+						"id": "goals_template",
+						"type": "template:shopping-goals"
+					},
+					{
+						"type": "header",
+						"content": "Free gift"
+					},
+					{
+						"default": "98ea9ae934a8448d85f43c31c3e489de",
+						"id": "free_gift_template",
+						"label": "Free Gift Template",
+						"type": "template:free-gift"
+					},
+					{
+						"default": "button btn btn--medium btn--secondary",
+						"label": "Change free gift button class names",
+						"id": "change_free_gift_btn",
+						"type": "button",
+						"info": "This button will show in the free gift item in the cart. This button is used to remove the free gift from the cart and allow customers to choose a different gift"
+					},
+					{
+						"type": "header",
+						"content": "Messages (Labels)",
+						"info": "Update texts on your cart"
+					},
+					{
+						"default": "Cart",
+						"placeholder": "Cart",
+						"label": "Cart Label",
+						"id": "__label_cart",
+						"type": "text",
+						"info": ""
+					},
+					{
+						"default": "Your cart is empty.",
+						"placeholder": "Your cart is empty.",
+						"id": "__label_cart_empty",
+						"label": "Cart Empty Text",
+						"type": "text",
+						"info": "This shows when the cart is empty"
+					},
+					{
+						"default": "Subtotal",
+						"id": "__label_subtotal",
+						"label": "Subtotal",
+						"placeholder": "Subtotal",
+						"type": "text",
+						"info": ""
+					},
+					{
+						"default": "Discount code",
+						"label": "Discount Input Placeholder",
+						"id": "__label_discount_input_placeholder",
+						"placeholder": "Discount code",
+						"type": "text",
+						"info": ""
+					},
+					{
+						"default": "Checkout",
+						"label": "Checkout",
+						"placeholder": "Checkout",
+						"id": "__label_checkout",
+						"type": "text",
+						"info": ""
+					},
+					{
+						"default": "Shipping, taxes, and discount codes are calculated at checkout.",
+						"label": "Checkout Disclaimer",
+						"placeholder": "Shipping, taxes, and discount codes are calculated at checkout.",
+						"id": "__label_checkout_disclaimer",
+						"type": "text",
+						"info": ""
+					},
+					{
+						"default": "Subscribe and save {{ discount }}",
+						"label": "Subscribe and save",
+						"placeholder": "Subscribe and save",
+						"id": "__label_subscribe_and_save",
+						"type": "text",
+						"info": "You can use {{ discount }} in the label to insert the subscription saving amount"
+					},
+					{
+						"default": "Discount",
+						"id": "__label_discount_label",
+						"placeholder": "Discount",
+						"label": "Discount",
+						"type": "text",
+						"info": ""
+					},
+					{
+						"default": "Initial Price",
+						"id": "__label_initial_price",
+						"label": "Initial Price",
+						"placeholder": "Initial Price",
+						"type": "text",
+						"info": ""
+					},
+					{
+						"default": "Final Price",
+						"id": "__label_final_price",
+						"label": "Final Price",
+						"placeholder": "Final Price",
+						"type": "text",
+						"info": ""
+					},
+					{
+						"default": "FREE",
+						"placeholder": "Free",
+						"id": "__label_free",
+						"label": "\"Free\" Label",
+						"type": "text",
+						"info": ""
+					},
+					{
+						"default": "One-time purchase",
+						"id": "__label_one_time_purchase",
+						"placeholder": "One-time purchase",
+						"label": "One-time purchase",
+						"type": "text"
+					},
+					{
+						"type": "header",
+						"content": "Shipping protection"
+					},
+					{
+						"default": "f9e64f208889485594d50211c4b284e0",
+						"id": "shipping_protection_template",
+						"label": "Shipping Protection",
+						"type": "template:shipping-protection"
+					},
+					{
+						"type": "header",
+						"content": "Advanced settings"
+					},
+					{
+						"default": true,
+						"label": "Enable subscribe and save",
+						"id": "enable_subscribe_and_save",
+						"type": "boolean",
+						"info": "Allow customer to opt into a subscription in the cart"
+					},
+					{
+						"default": true,
+						"label": "Show reward progress bar when cart is empty",
+						"id": "show_reward_progress_when_empty",
+						"type": "boolean"
+					},
+					{
+						"default": false,
+						"id": "enable_klarna",
+						"label": "Enable Klarna",
+						"type": "boolean"
+					},
+					{
+						"label": "Top Custom Code",
+						"id": "top_custom_code",
+						"type": "code",
+						"info": "Custom code to insert on top of the cart slider"
+					},
+					{
+						"label": "Bottom Custom Code",
+						"id": "bottom_custom_code",
+						"type": "code",
+						"info": "Custom code to insert below the checkout button"
+					},
+					{
+						"default": "#upezCart {\n  /* Accent color of the cart */\n  --upez--general-bg-color: #faf8f4;\n\n  /* Border radius of buttons, images, cards, ... */}\n:root{\n  --upez-corner-base: 4px;\n}",
+						"placeholder": "e.g: .cart_label {}",
+						"id": "css",
+						"label": "Custom css",
+						"type": "css",
+						"info": "Css code to be inserted between <style>...</style>"
+					},
+					{
+						"id": "cart_item_property_binding",
+						"label": "Render cart item property binding (JS)",
+						"type": "js",
+						"info": "Custom JavaScript code to render cart item property binding. This code will be executed for each cart item. Use this to customize the cart item properties. You can access the cart item object using the variable `state.cartItem`."
+					},
+					{
+						"banner": "critical",
+						"type": "header",
+						"subheadline": "Don't worry. Watch these videos below and fill in the values to make UPEZ work seamlessly with your theme.",
+						"content": "Having issues with the cart drawer?"
+					},
+					{
+						"default": "cart-drawer, #site-cart-sidebar, .cart__drawer, #Cart-Drawer, .quick-cart, #right-drawer-slot",
+						"tooltip_html": "",
+						"popup_html": "<div style=\"position: relative; padding-bottom: 62.93706293706294%; height: 0;\"><iframe src=\"https://www.loom.com/embed/1e6b971ee8b94e799629e4991c5718fd?sid=495a30ce-aee2-4f67-ac5b-79d7ad9b718d\" frameborder=\"0\" webkitallowfullscreen mozallowfullscreen allowfullscreen style=\"position: absolute; top: 0; left: 0; width: 100%; height: 100%;\"></iframe></div>",
+						"placeholder": "e.g: cart-drawer",
+						"label": "Force hide the default cart drawer by its CSS selector",
+						"id": "disableCartSelectors",
+						"type": "text",
+						"info": "If you see your default cart drawer opens along with the UPEZ Cart, enter the CSS selector of the cart drawer and UPEZ will hide the default cart away. Leave this empty if the UPEZ cart slider is already working."
+					},
+					{
+						"thumbnail": "https://cdn.builder.io/api/v1/image/assets%2F3628f640692a4d2fa236d814bb277285%2Fdfb91db8762642da81d1f063f1ddebb7",
+						"default": ".cart-count-bubble, [data-header-cart-count], cart-count, .thb-item-count, [data-js-cart-count], [x-text=\"$store.cartCount.count\"]",
+						"tooltip_html": "",
+						"popup_html": "<div style=\"position: relative; padding-bottom: 71.42857142857143%; height: 0;\"><iframe src=\"https://www.loom.com/embed/5044bddaf547468f816d2cc27186b38d?sid=d516f22f-f949-48db-b608-765faee74558\" frameborder=\"0\" webkitallowfullscreen mozallowfullscreen allowfullscreen style=\"position: absolute; top: 0; left: 0; width: 100%; height: 100%;\"></iframe></div>",
+						"id": "cart_item_count_selector",
+						"label": "Cart item count selector",
+						"placeholder": "e.g: .cart-total-items",
+						"type": "text",
+						"info": "Enter the cart bubble item count. Leave empty if the items count is already working."
+					},
+					{
+						"default": ".area--cart",
+						"thumbnail": "https://cdn.builder.io/api/v1/image/assets%2F3628f640692a4d2fa236d814bb277285%2F27c940c3952a497eaeb69cd5c53c6dbf",
+						"tooltip_html": "",
+						"popup_html": "<div style=\"position: relative; padding-bottom: 62.93706293706294%; height: 0;\"><iframe src=\"https://www.loom.com/embed/a2fe360879e2463e80628e8cba1973c2?sid=f2bba6ad-e485-46f4-8da7-07f5f42240a6\" frameborder=\"0\" webkitallowfullscreen mozallowfullscreen allowfullscreen style=\"position: absolute; top: 0; left: 0; width: 100%; height: 100%;\"></iframe></div>",
+						"id": "cart_button_selector",
+						"label": "Cart button selector",
+						"placeholder": "e.g: #cartButton",
+						"type": "text",
+						"info": "Enter the selector of the cart button that should open the cart slider. Leave this empty if the cart slider is already working"
+					},
+					{
+						"type": "header",
+						"content": "PDP settings"
+					},
+					{
+						"label": "Price container selector on Product Page",
+						"placeholder": "Selector of the container of your product prices",
+						"id": "pdp_price_container_selector",
+						"type": "text"
+					},
+					{
+						"default": "0a185abc20804bf08d8b66e7fe92cdc5",
+						"id": "product_price_template",
+						"label": "Prices on product page",
+						"type": "template:product-price"
+					}
+				],
+				"thumbnail": "https://cdn.builder.io/api/v1/image/assets%2F3628f640692a4d2fa236d814bb277285%2Fa0ad890883b9420abe3881c9be88d6a0",
+				"themeId": false,
+				"cartLabel": "Cart",
+				"title": "",
+				"version": 13,
+				"premium": false,
+				"public": false,
+				"html": "\n\n<!-- ***** Generated by Builder.io on Mon, 21 Oct 2024 20:29:49 GMT ***** -->\n\n<style type=\"text/css\" class=\"builder-styles builder-api-styles\">/* * Custom CSS styles * * Global by default, but use `.builder-component-8c22b490d74c4be8840ebf9c8add7012` to scope to just this content, e.g. * * .builder-component-8c22b490d74c4be8840ebf9c8add7012 .foo { * color: 'red' * } */ * { margin: 0; } :root { --upez-cart-padding-md: 20px; --upez-cart-padding-sm: 15px; --upez-cart-padding-xs: 15px; --upez-cart-inner-drawer-background: white; --upez-corner-base: 4px; --upez--upsell-container-bg-color: var(--upez--general-bg-color); --upez-checkmark-size: 17px; } @media (max-width: 750px) { :root { --upez-cart-padding-md: 16px; } } .upez-watermark { visibility: visible !important; opacity: 1 !important; width: 101px !important; height: 12px !important; margin: 9px 0 auto auto !important; } .upez-watermark img { border-radius: 0; } .upez-watermark picture, .upez-watermark img { visibility: visible !important; height: 100% !important; opacity: 1 !important; } .with-upez-loader { position: relative; --uib-color: white; transition: color .3s; } .with-upez-loader--black { --uib-color: black; } .with-upez-loader[adding] { color: transparent !important; transition-delay: 0s; } [adding] .upez-loader { width: var(--uib-size); } [adding] .upez-loader--dots { opacity: 1; transform: translate(-50%, -50%); } [adding] .upez-loader--spinner { height: var(--uib-size); width: var(--uib-size); } .upez-loader--spinner { /* --uib-size: 40px; */ --uib-speed: 2s; --uib-color: rgba(0,0,0,0.5); height: 0; width: 0; vertical-align: middle; transform-origin: center; animation: rotate var(--uib-speed) linear infinite; } .upez-loader--spinner circle { fill: none; stroke: var(--uib-color); stroke-dasharray: 1, 200; stroke-dashoffset: 0; stroke-linecap: round; animation: stretch calc(var(--uib-speed) * 0.75) ease-in-out infinite; } .upez-loader--dots { width: 30px; position: absolute; top: 50%; left: 50%; transform: translate(-50%, 0%); opacity: 0; display: flex; align-items: center; justify-content: center; aspect-ratio: 2; --_g: no-repeat radial-gradient(circle closest-side, var(--uib-color) 90%, #ffffff00); background: var(--_g) 0% 50%, var(--_g) 50% 50%, var(--_g) 100% 50%; background-size: calc(100%/3) 50%; animation: l3 1s infinite linear; transition: opacity .3s cubic-bezier(0.22, 1, 0.36, 1), transform .3s cubic-bezier(0.22, 1, 0.36, 1); } @keyframes l3 { 20%{background-position:0% 0%, 50% 50%,100% 50%} 40%{background-position:0% 100%, 50% 0%,100% 50%} 60%{background-position:0% 50%, 50% 100%,100% 0%} 80%{background-position:0% 50%, 50% 50%,100% 100%} } .upez-loader { width: 0; max-width: 60px; transition: width .3s; --uib-size: 80%; --uib-speed: 1.4s; --uib-stroke: 5px; --uib-bg-opacity: .1; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); display: flex; align-items: center; justify-content: center; height: var(--uib-stroke); border-radius: calc(var(--uib-stroke) / 2); overflow: hidden; } .upez-loader::before { content: ''; position: absolute; top: 0; left: 0; height: 100%; width: 100%; background-color: var(--uib-color); opacity: var(--uib-bg-opacity); transition: background-color 0.3s ease; } .upez-loader::after { content: ''; height: 100%; width: 100%; border-radius: calc(var(--uib-stroke) / 2); animation: zoom var(--uib-speed) ease-in-out infinite; transform: translateX(-100%); background-color: var(--uib-color); transition: background-color 0.3s ease; } @keyframes zoom { 0% { transform: translateX(-100%); } 100% { transform: translateX(100%); } } #upezCart select { border: none; background-size: auto 23%; background-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAiIGhlaWdodD0iNiIgdmlld0JveD0iMCAwIDEwIDYiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxwYXRoIGQ9Ik05IDFMNSA1TDEgMSIgc3Ryb2tlPSIjNEQyNDAwIiBzdHJva2Utd2lkdGg9IjAuNzUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPgo8L3N2Zz4K); background-color: var(--upez--general-bg-color, rgba(0, 0, 0, 0.06)); background-repeat: no-repeat; background-position: calc(100% - 8px); appearance: unset; border-radius: var(--upez-corner-base); padding-right: 37px; padding-left: 13px; font-size: 13px; } .dynamic-checkout__content .shopify-cleanslate ul { justify-content: center; grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); gap: 0 8px; flex-direction: row !important; flex-wrap: wrap !important; display: grid !important; margin: 0 !important; width: calc(10 / 7 * 100%); transform: scale(0.7); transform-origin: left top; height: 22px; padding-bottom: 30px !important; } @media (max-width: 750px) { .dynamic-checkout__content .shopify-cleanslate ul { height: 31px; padding-bottom: 38px !important; } } .dynamic-checkout__content .shopify-cleanslate ul:empty { display: none !important; } .dynamic-checkout__content .shopify-cleanslate ul { row-gap: 8px; } .dynamic-checkout__content .shopify-cleanslate ul li { width: 100%; margin: 0 !important; } .with-percent-discount { transition: color .3s cubic-bezier(0.22, 1, 0.36, 1); position: relative; } .with-percent-discount::before { content: ''; position: absolute; top: -20px; left: -20px; bottom: -20px; right: -20px; } .with-percent-discount::after { content: var(--discounted-percent); color: transparent; position: absolute; left: 50%; transform: translate(-50%, -50%); top: 50%; transition: opacity .3s cubic-bezier(0.22, 1, 0.36, 1); } .with-percent-discount:hover { color: transparent; } .with-percent-discount:hover:after { color: var(--cart-text-color, rgba(0, 0, 0, 1)); } @keyframes append-animate { from { transform: translate(70%, 0); opacity: 0; } to { transform: translate(0, 0); opacity: 1; } } .builder-component-8c22b490d74c4be8840ebf9c8add7012 .animate-in { animation: append-animate .7s cubic-bezier(0.22, 1, 0.36, 1); } .upez-hide { display: none !important; visibility: hidden !important; opacity: 0 !important; } .builder-component-8c22b490d74c4be8840ebf9c8add7012 .satcb_quick_buy { display: none; } /* Animation */ .upez__ring { --uib-size: 40px; --uib-speed: 2s; --uib-color: black; height: var(--uib-size); width: var(--uib-size); vertical-align: middle; transform-origin: center; animation: rotate var(--uib-speed) linear infinite; } .upez__ring circle { fill: none; stroke: var(--uib-color); stroke-dasharray: 1, 200; stroke-dashoffset: 0; stroke-linecap: round; animation: stretch calc(var(--uib-speed) * 0.75) ease-in-out infinite; } @keyframes rotate { 100% { transform: rotate(360deg); } } @keyframes stretch { 0% { stroke-dasharray: 1, 200; stroke-dashoffset: 0; } 50% { stroke-dasharray: 90, 200; stroke-dashoffset: -35px; } 100% { stroke-dashoffset: -124px; } } .line-wobble { --uib-size: 80px; --uib-speed: 1.75s; --uib-color: #C5EEA8; --uib-line-weight: 5px; margin: auto; position: relative; display: flex; align-items: center; justify-content: center; height: var(--uib-line-weight); width: var(--uib-size); border-radius: calc(var(--uib-line-weight) / 2); overflow: hidden; transform: translate3d(0, 0, 0); } .line-wobble::before { content: ''; position: absolute; top: 0; left: 0; height: 100%; width: 100%; background-color: var(--uib-color); opacity: 0.1; } .line-wobble::after { content: ''; height: 100%; width: 100%; border-radius: calc(var(--uib-line-weight) / 2); animation: wobble var(--uib-speed) ease-in-out infinite; transform: translateX(-95%); background-color: var(--uib-color); } @keyframes wobble { 0%, 100% { transform: translateX(-95%); } 50% { transform: translateX(95%); } } .upez__cross-over > span { opacity: 0.5; text-decoration: line-through; } ::-webkit-details-marker { display: none; } .shopify-cleanslate ul > li:not(li:first-of-type):not(li:nth-of-type(2)):not(li:nth-of-type(3)) { display: none; } div#dynamic-checkout-cart { min-height: 0 !important; } #upezCart shopify-payment-terms { margin-top: 0; text-align: center; } .upez__marquee { position: relative; overflow: hidden; --offset: 20vw; --move-initial: calc(-25% + var(--offset)); --move-final: calc(-75% + var(--offset)); } .upez__marquee__inner { width: max-content; display: flex; position: relative; transform: translate3d(var(--move-initial), 0, 0); animation: upez__marquee 25s linear infinite; animation-play-state: paused; } .upez__marquee .upez__marquee__inner > div { padding: 0 2vw; } [cart-open=\"true\"] .upez__marquee .upez__marquee__inner { animation-play-state: running; } @keyframes upez__marquee { 0% { transform: translate3d(var(--move-initial), 0, 0); } 100% { transform: translate3d(var(--move-final), 0, 0); } } @keyframes grid-slide-down { 0% { grid-template-rows: 0fr; opacity: 0; } 50% { opacity: 0; grid-template-rows: 1fr; } 100% { grid-template-rows: 1fr; opacity: 1; } } .animate--grid-slide-down { animation: grid-slide-down .7s cubic-bezier(0.22, 1, 0.36, 1); } .upez--hide-when-empty:empty { display: none !important; } #gorgias-chat-container { z-index: 0; position: relative; } .upez--checkbox-container { position: relative; } .upez--checkbox-container > input[type=\"checkbox\"] { position: absolute; opacity: 0; } .upez--checkbox-container .upez--checkmark:after { left: 35%; top: 20%; width: 25%; height: 50%; border: solid white; border-width: 0 2px 2px 0; -webkit-transform: rotate(45deg); -ms-transform: rotate(45deg); transform: rotate(45deg); } .upez--checkmark:after { content: \"\"; position: absolute; display: none; } .upez--checkbox-container input[type=\"checkbox\"]:checked ~ .upez--checkmark:after { display: block; } .upez--checkbox-container input[type=\"checkbox\"]:checked ~ .upez--checkmark { background-color: currentColor; } .upez--checkmark { position: absolute; top: 0; left: 0; height: var(--upez-checkmark-size); width: var(--upez-checkmark-size); border: 1px solid currentColor; border-radius: var(--upez-corner-base); } #upezCart svg { fill: none; stroke: inherit; } /* Only show 3 quick payment options */ .shopify-cleanslate ul > li:not(li:first-of-type):not(li:nth-of-type(2)):not(li:nth-of-type(3)) { display: none; } #smile-ui-lite-container { z-index: 9999 !important; } div#dynamic-checkout-cart:has(ul:empty) { display: none; } #upezCart undefined { display: none !important; } @media screen and (min-width: 750px) { #upezCart .cart--additional-buttons.additional-checkout-buttons.additional-checkout-buttons--horizontal { width: 471px; transform-origin: top left; transform: scale(calc(395 / 471)); } #upezCart .cart--additional-buttons { max-width: inherit !important; } } /*start:h47494*/.css-h47494{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;-webkit-align-items:stretch;-webkit-box-align:stretch;-ms-flex-align:stretch;align-items:stretch;}/*end:h47494*/ /*start:1mvsfya*/.css-1mvsfya.builder-block{height:0;width:0;display:inline-block;opacity:0;overflow:hidden;pointer-events:none;}/*end:1mvsfya*/</style><div class=\"builder-component builder-component-8c22b490d74c4be8840ebf9c8add7012\" data-name=\"page\" data-source=\"Rendered by Builder.io\"><div class=\"builder-content\" builder-content-id=\"8c22b490d74c4be8840ebf9c8add7012\" builder-model=\"page\"><div data-builder-component=\"page\" data-builder-content-id=\"8c22b490d74c4be8840ebf9c8add7012\" data-builder-variation-id=\"8c22b490d74c4be8840ebf9c8add7012\"><style class=\"builder-custom-styles\"></style><style data-emotion-css=\"h47494\"></style><div class=\"builder-blocks css-h47494\" builder-type=\"blocks\"><div class=\"builder-block builder-57a9f3d5448d4f94bdd0f6b5f1b3bb06 builder-has-component css-0\" builder-id=\"builder-57a9f3d5448d4f94bdd0f6b5f1b3bb06\"><div class=\"builder-custom-code replace-nodes\"><script src=\"https://cdn.jsdelivr.net/npm/swiper@9.2.2/swiper-element-bundle.min.js\"></script> </div></div><style data-emotion-css=\"1mvsfya\"></style><img src=\"https://cdn.builder.io/api/v1/pixel?apiKey=3628f640692a4d2fa236d814bb277285\" aria-hidden=\"true\" alt=\"\" role=\"presentation\" width=\"0\" height=\"0\" class=\"builder-block builder-pixel-7zcpe8kk7v7 css-1mvsfya\" builder-id=\"builder-pixel-7zcpe8kk7v7\"/></div></div></div></div>",
+				"animations": [
+					{
+						"trigger": "hover",
+						"animation": "custom",
+						"steps": [
+							{
+								"id": "5c51a6dd2a5b4749b41122cf1f7ddbd5",
+								"isStartState": false,
+								"styles": {},
+								"delay": 0
+							},
+							{
+								"id": "15520c8469a443ca9278e49a7112f060",
+								"isStartState": false,
+								"styles": {
+									"transform": "rotate(90deg)"
+								},
+								"delay": 0
+							}
+						],
+						"delay": 0,
+						"duration": 0.3,
+						"easing": "cubic-bezier(.37,.01,0,.98)",
+						"repeat": false,
+						"thresholdPercent": 0,
+						"elementId": "builder-13ecfa353fab46e9b34fb041db6dad26",
+						"id": "builder-13ecfa353fab46e9b34fb041db6dad26"
+					},
+					{
+						"trigger": "pageLoad",
+						"animation": "fadeInUp",
+						"steps": [
+							{
+								"id": "aab929005db247fe870d621606355561",
+								"isStartState": false,
+								"styles": {
+									"opacity": "0",
+									"transform": "translate3d(0, 20px, 0)"
+								},
+								"delay": 0
+							},
+							{
+								"id": "87e916cde164401d80f2721d4cff66b1",
+								"isStartState": false,
+								"styles": {
+									"opacity": "1",
+									"transform": "none"
+								},
+								"delay": 0
+							}
+						],
+						"delay": 0,
+						"duration": 0.2,
+						"easing": "cubic-bezier(.37,.01,0,.98)",
+						"repeat": false,
+						"thresholdPercent": 0,
+						"elementId": "builder-48a6481588cc4d2a84fd6cea490d98d7",
+						"id": "builder-48a6481588cc4d2a84fd6cea490d98d7"
+					},
+					{
+						"trigger": "hover",
+						"animation": "custom",
+						"steps": [
+							{
+								"id": "8377d9692d5841f898e3e72b663486f9",
+								"isStartState": false,
+								"styles": {},
+								"delay": 0
+							},
+							{
+								"id": "5fdfdeaf828c4da09f615dcbf587b8a4",
+								"isStartState": false,
+								"styles": {
+									"opacity": "1"
+								},
+								"delay": 0
+							}
+						],
+						"delay": 0,
+						"duration": 0.3,
+						"easing": "cubic-bezier(.37,.01,0,.98)",
+						"repeat": false,
+						"thresholdPercent": 0,
+						"elementId": "builder-a73af2a72bef4a978f5fedab8e5181a2",
+						"id": "builder-a73af2a72bef4a978f5fedab8e5181a2"
+					}
+				]
+			},
+			"modelId": "81afce7bdbb5490d95b22acb9cc4e19c",
+			"query": [
+				{
+					"@type": "@builder.io/core:Query",
+					"property": "urlPath",
+					"value": "/",
+					"operator": "contains"
+				},
+				{
+					"@type": "@builder.io/core:Query",
+					"property": null,
+					"value": null,
+					"operator": "is"
+				}
+			],
+			"published": "published",
+			"screenshot": "https://cdn.builder.io/api/v1/image/assets%2F3628f640692a4d2fa236d814bb277285%2Fb06019c0f8894f089c3e14699a20d6a2",
+			"firstPublished": 1674475074830,
+			"testRatio": 1,
+			"lastUpdated": 1728610763841,
+			"createdDate": 1709553343000,
+			"createdBy": "EnR5acqNEWhTk1rr6ZQlptX8Ql62",
+			"meta": {
+				"lastPreviewUrl": "https://upez-demo-2.myshopify.com/?clear_upez_cache&builder.space=3628f640692a4d2fa236d814bb277285&builder.user.permissions=read%2Ccreate%2Cpublish%2CeditCode%2CeditDesigns%2Cadmin%2CeditLayouts%2CeditLayers&builder.user.role.name=Admin&builder.user.role.id=admin&builder.cachebust=true&builder.preview=page&builder.noCache=true&__builder_editing__=true&builder.overrides.page=8c22b490d74c4be8840ebf9c8add7012&builder.overrides.8c22b490d74c4be8840ebf9c8add7012=8c22b490d74c4be8840ebf9c8add7012&builder.options.locale=Default",
+				"kind": "page",
+				"originalContentId": "70a3a83e019d4e028355cf1e14b0e3e0",
+				"hasLinks": false,
+				"winningTest": null,
+				"dataSources": [],
+				"symbolsUsed": {
+					"b3dab94a55fe427a800f86d97341a971": true,
+					"a5576eb07ab6485ba5a96c9585bcbae2": true,
+					"340967ce0fc34bd483d04ba02d9a2d39": true,
+					"9a6c366569ea42cfaace5b0f94b8182e": true,
+					"809ff1784449430f85d32b5442d99fd8": true
+				}
+			},
+			"name": "Solid Official",
+			"id": "8c22b490d74c4be8840ebf9c8add7012",
+			"rev": "q1ltb4ge7bc"
+		}
+	]
+}
