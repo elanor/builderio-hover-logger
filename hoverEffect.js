@@ -1,59 +1,49 @@
 function applyHoverEffectAndLogHoveredActions() {
-    // Use actual template settings from the provided JSON and screenshots
     const builderResponse = {
-        blocks: [
+        settings: [
             {
-                id: "builder-104bf03ab7241519dc9d982fc154da8",  // Example block for 'cart_inner_background'
-                bindings: {
-                    templateSetting: "cart_inner_background"  // Cart Inner Background setting
-                }
+                id: "cart_width", 
+                label: "Cart Width"
             },
             {
-                id: "builder-e756a38c7844eb588bf37494daf6fb",  // Example block for 'backdrop_color'
-                bindings: {
-                    templateSetting: "backdrop_color"  // Backdrop Color setting
-                }
+                id: "cart_inner_background",  
+                label: "Cart Inner Background"
+            },
+            {
+                id: "backdrop_color",  
+                label: "Backdrop Color"
             }
         ]
     };
 
-    // Function to apply hover effects and log hovered actions
-    function applyHoverAndLog(block) {
-        const element = document.querySelector(`[builder-id='${block.id}']`);
+    function applyHoverAndLog(settingId) {
+        const elements = document.querySelectorAll(`[data-setting-id='${settingId}']`);
 
-        if (element) {
-            console.log(`Element found with builder-id=${block.id}`);
+        elements.forEach(element => {
+            console.log(`Element found with setting ID: ${settingId}`);
 
-            // Add hover effect
             element.addEventListener("mouseenter", () => {
-                element.style.border = "5px solid blue";  // Apply blue border on hover
-                console.log(`Hovered setting id: ${block.bindings.templateSetting} of template id: ${block.id}`);
+                element.style.border = "5px solid blue";  
+                console.log(`Hovered setting id: ${settingId}`);
             });
 
-            // Remove hover effect when the mouse leaves
             element.addEventListener("mouseleave", () => {
-                element.style.border = "none";  // Remove border on mouse leave
+                element.style.border = "none";  
             });
-        } else {
-            console.log(`Element with builder-id=${block.id} not found yet.`);
+        });
+
+        if (elements.length === 0) {
+            console.log(`No element found with setting ID: ${settingId}`);
         }
     }
 
-    // MutationObserver to watch for DOM changes and apply hover effect
-    const observer = new MutationObserver((mutationsList, observer) => {
-        builderResponse.blocks.forEach((block) => {
-            if (block.bindings && block.bindings.templateSetting) {
-                applyHoverAndLog(block);
-            }
-        });
+    builderResponse.settings.forEach((setting) => {
+        if (setting.id) {
+            applyHoverAndLog(setting.id);
+        }
     });
 
-    // Start observing changes in the DOM
-    observer.observe(document.body, { childList: true, subtree: true });
-    
-    // Log to indicate the observer has started
-    console.log("MutationObserver started, waiting for elements...");
+    console.log("Hover effect applied to elements based on template settings.");
 }
 
-// Apply the hover effect and log hovered actions on elements with bindings
 applyHoverEffectAndLogHoveredActions();
