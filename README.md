@@ -1,40 +1,39 @@
-# Hover Effect for UPEZ Cart Slider
-## Task Overview
+# UPEZ Cart Hover Effect Feature
 
-This task is focused on adding a hover effect and logging actions for elements in a UPEZ cart slider. The hover effect should highlight elements when the user hovers over them and log the hovered setting ID and the template ID to the console.
-### Task Details
+## Overview
 
-- Objective: When the user hovers over elements that have a builder-id and associated templateSetting, a 5px solid blue border should be applied around the element, and the following message should be logged in the console:
+This project implements a hover effect for a custom cart slider built using the `Builder.io` template, as part of a Shopify store setup. The cart slider is dynamically generated, and certain elements within the slider are customizable using Builder.io settings. This project enhances the cart slider by highlighting specific elements related to certain template settings when they are hovered over, and logs these actions to the console.
 
-Hovered setting id: <setting_id> of template id: <template_id>
+## Features
 
-Network Response: The response includes cart elements loaded dynamically from a `Builder.io` template. These elements have unique builder-id values and are associated with specific settings via templateSetting.
+- Hover Effect: A blue border (2px) is applied to elements when hovered, highlighting elements that match specified builder-id attributes.
+- Console Logging: Logs the builder-id of elements that are hovered, making it easy to track user interaction with specific cart components.
+- Dynamic Matching: Elements with specific builder-ids are dynamically detected and monitored for hover interactions.
 
-URL for Testing: The provided URL for testing this behavior in the console:
+## Key Points:
 
+- `MutationObserver`: The script uses a MutationObserver to detect when new elements are added to the DOM and applies hover listeners to elements that match the specified builder-id attributes.
+- Delay in Initialization: The code waits for 2 seconds after the MutationObserver starts before scanning the entire document for existing matching elements.
+- Element Matching: Only elements with specific builder-id attributes as defined in builderResponse.blocks are processed and highlighted when hovered.
+
+## Usage
+
+### How to Test:
+
+- URL for Testing: The provided URL for testing this behavior in the console:
 `https://upez-frontend.vercel.app/api/internal-preview-cart?domain=dreamrecovery.io`
+- Open the browser's developer tools.
+- Navigate to the console tab.
+- Paste the provided JavaScript code into the console.
+- Press Enter to run the script.
+- Hover over any element in the cart. If the element matches one of the builder-ids specified in the script, it will be highlighted with a - blue border and logged to the console.
 
-### Steps to Implement
+### Elements Tracked:
 
-- Add Hover Effect: A JavaScript function was created to apply a hover effect to elements in the UPEZ cart slider that contain a specific builder-id and templateSetting.
-
-- Log Actions: When an element is hovered, the setting ID (templateSetting) and template ID (builder-id) should be logged to the browser's console.
-
-- Use of MutationObserver: Since the cart slider content is dynamically loaded, a MutationObserver was used to monitor changes in the DOM and apply the hover effect when the relevant elements are added.
-
-### Console Testing
-
-To test the script, the following code should be pasted into the browser's Console after loading the given URL.
-
-## Issues Encountered
-
-Despite multiple attempts and testing using the provided network response and builder-id values, the hover effect does not work as expected. The script attempts to find elements by their builder-id, but the necessary DOM elements do not appear or are not being detected.
-Potential Reasons for the Hover Effect Not Working:
-
-- Elements not being rendered: The builder-id elements might not be present in the DOM at the time the script is executed.
-- Iframe or cross-origin restrictions: If the elements are inside iframes, accessing them might be restricted by cross-origin policies, preventing the script from applying the hover effect.
-- Dynamic Loading: The elements may be loaded after a delay or based on user interaction, which may require more advanced handling or debugging.
+- Upsell Container Background Color (builder-id: builder-cbdecd8ca961477da2954da574dbdfa7)
+- Reward Section Background Color (builder-id: builder-2cd16967f9cd4633bd436dd951a1a9d1)
+- Primary Checkout Button (builder-id: builder-5631b68cd5e5484ab94fb29f29a4ecfd)
 
 ## Conclusion
 
-The hover effect was designed as per the task, but due to the dynamic nature of the UPEZ cart slider and possibly the absence of the expected elements in the DOM, the desired behavior could not be fully achieved. Further investigation into how the elements are loaded and structured might be required.
+This implementation provides a dynamic hover effect for specific cart elements in the UPEZ cart slider using the Builder.io template. The combination of MutationObserver and dynamic DOM scanning ensures that even dynamically added elements receive the hover effect, enhancing user interaction tracking and debugging capabilities.
