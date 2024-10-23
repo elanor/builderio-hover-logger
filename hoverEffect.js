@@ -9,7 +9,6 @@ function applyHoverEffectToElements() {
 
     const settingsToTrack = ["cart_width"];
 
-    // Select the element with the `cart_width` attribute
     const cartElement = Array.from(document.querySelectorAll('*')).find(el => {
         const style = window.getComputedStyle(el);
         const computedWidth = parseFloat(style.width);
@@ -23,12 +22,10 @@ function applyHoverEffectToElements() {
 
     console.log("Cart element with `cart_width` found:", cartElement);
 
-    // Observer to detect added nodes (e.g., dynamically loaded content)
     const observer = new MutationObserver((mutationsList) => {
         mutationsList.forEach(mutation => {
             mutation.addedNodes.forEach(node => {
                 if (node.nodeType === 1 && cartElement.contains(node)) {
-                    // Apply hover effect only to new children inside the cart element
                     applyHoverToChildren(node);
                 }
             });
@@ -37,32 +34,28 @@ function applyHoverEffectToElements() {
 
     observer.observe(cartElement, { childList: true, subtree: true });
 
-    // Function to apply hover effect to all children of the cart element
     function applyHoverToChildren(parentElement) {
-        // Target specific elements inside the cart (including the payment buttons)
-        const cartChildren = parentElement.querySelectorAll('div, span, img, button, .shopify-payment-button, .amazon-pay-button, .paypal-button');
+        const cartChildren = parentElement.querySelectorAll('div, span, img, button');
         cartChildren.forEach(child => {
             addHoverListeners(child);
         });
     }
 
-    // Function to add hover listeners
     function addHoverListeners(element) {
         const style = window.getComputedStyle(element);
 
         if (elementMatchesBuilderSetting(element, style) || element.tagName === 'BUTTON') {
             element.addEventListener("mouseenter", () => {
                 console.log("Hover effect applied to:", element);
-                element.style.border = "2px solid blue"; // Change border on hover
+                element.style.border = "2px solid blue"; 
             });
 
             element.addEventListener("mouseleave", () => {
-                element.style.border = "none"; // Reset border on hover out
+                element.style.border = "none"; 
             });
         }
     }
 
-    // Function to check if element matches builder settings
     function elementMatchesBuilderSetting(element, style) {
         return settingsToTrack.some(settingKey => {
             const settingValue = builderResponse[settingKey];
@@ -76,11 +69,9 @@ function applyHoverEffectToElements() {
         });
     }
 
-    // Initial application of hover effect to current cart children
     applyHoverToChildren(cartElement);
 
     console.log("MutationObserver started, waiting for elements...");
 }
 
-// Run the hover effect function
 applyHoverEffectToElements();
