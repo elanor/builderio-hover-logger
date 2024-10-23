@@ -1,81 +1,86 @@
-function applyHoverEffectAndLogHoveredActions() {
-    const builderResponse = {
-        blocks: [
-            {
-                id: "builder-cbdecd8ca961477da2954da574dbdfa7",
-                bindings: {
-                    templateSetting: "upsell_container_bg_color"
-                }
-            },
-            {
-                id: "builder-2cd16967f9cd4633bd436dd951a1a9d1",
-                bindings: {
-                    templateSetting: "reward_section_background_color"
-                }
-            },
-            {
-                id: "builder-5631b68cd5e5484ab94fb29f29a4ecfd",  
-                bindings: {
-                    templateSetting: "primary_color"  
-                }
-            }
-        ]
-    };
-
-    function applyHoverAndLog(element) {
-        if (element.getAttribute('data-hover-listener-attached') === 'true') {
-            return;
-        }
-
-        element.addEventListener("mouseenter", (event) => {
-            const target = event.target;
-            target.style.border = "2px solid blue";
-            console.log(`Hovered over element with builder-id: ${element.getAttribute('builder-id')}`);
-        });
-
-        element.addEventListener("mouseleave", (event) => {
-            const target = event.target;
-            target.style.border = "none";
-        });
-
-        element.setAttribute('data-hover-listener-attached', 'true');
+function applyHoverEffectToElements() {
+    const builderResponse = window.upez__cart_settings;
+    if (!builderResponse) {
+        console.warn("Builder response not found.");
+        return;
     }
 
-    function checkIfElementMatchesSetting(setting, element) {
-        const builderId = element.getAttribute('builder-id');
-        if (builderId && builderId === setting.id) {
-            return true;
-        }
-        return false;
+    console.log("Builder response found:", builderResponse);
+
+    const settingsToTrack = ["cart_width"];
+
+    // Select the element with the `cart_width` attribute
+    const cartElement = Array.from(document.querySelectorAll('*')).find(el => {
+        const style = window.getComputedStyle(el);
+        const computedWidth = parseFloat(style.width);
+        return settingsToTrack.includes('cart_width') && computedWidth === parseFloat(builderResponse.cart_width);
+    });
+
+    if (!cartElement) {
+        console.warn("Cart element with `cart_width` not found.");
+        return;
     }
 
+    console.log("Cart element with `cart_width` found:", cartElement);
+
+    // Observer to detect added nodes (e.g., dynamically loaded content)
     const observer = new MutationObserver((mutationsList) => {
         mutationsList.forEach(mutation => {
             mutation.addedNodes.forEach(node => {
-                if (node.nodeType === 1) {
-                    builderResponse.blocks.forEach((setting) => {
-                        if (checkIfElementMatchesSetting(setting, node)) {
-                            applyHoverAndLog(node);
-                        }
-                    });
+                if (node.nodeType === 1 && cartElement.contains(node)) {
+                    // Apply hover effect only to new children inside the cart element
+                    applyHoverToChildren(node);
                 }
             });
         });
     });
 
-    observer.observe(document.body, { childList: true, subtree: true });
+    observer.observe(cartElement, { childList: true, subtree: true });
+
+    // Function to apply hover effect to all children of the cart element
+    function applyHoverToChildren(parentElement) {
+        // Target specific elements inside the cart (including the payment buttons)
+        const cartChildren = parentElement.querySelectorAll('div, span, img, button, .shopify-payment-button, .amazon-pay-button, .paypal-button');
+        cartChildren.forEach(child => {
+            addHoverListeners(child);
+        });
+    }
+
+    // Function to add hover listeners
+    function addHoverListeners(element) {
+        const style = window.getComputedStyle(element);
+
+        if (elementMatchesBuilderSetting(element, style) || element.tagName === 'BUTTON') {
+            element.addEventListener("mouseenter", () => {
+                console.log("Hover effect applied to:", element);
+                element.style.border = "2px solid blue"; // Change border on hover
+            });
+
+            element.addEventListener("mouseleave", () => {
+                element.style.border = "none"; // Reset border on hover out
+            });
+        }
+    }
+
+    // Function to check if element matches builder settings
+    function elementMatchesBuilderSetting(element, style) {
+        return settingsToTrack.some(settingKey => {
+            const settingValue = builderResponse[settingKey];
+            switch (settingKey) {
+                case 'cart_width':
+                    const computedWidth = parseFloat(style.width);
+                    return computedWidth === parseFloat(settingValue);
+                default:
+                    return false;
+            }
+        });
+    }
+
+    // Initial application of hover effect to current cart children
+    applyHoverToChildren(cartElement);
 
     console.log("MutationObserver started, waiting for elements...");
-
-    setTimeout(() => {
-        document.querySelectorAll('*').forEach(element => {
-            builderResponse.blocks.forEach((setting) => {
-                if (checkIfElementMatchesSetting(setting, element)) {
-                    applyHoverAndLog(element);
-                }
-            });
-        });
-    }, 2000);  
 }
 
-applyHoverEffectAndLogHoveredActions();
+// Run the hover effect function
+applyHoverEffectToElements();
